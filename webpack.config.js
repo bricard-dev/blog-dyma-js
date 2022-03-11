@@ -7,6 +7,7 @@ module.exports = {
   entry: {
     main: path.join(__dirname, "src/index.js"),
     form: path.join(__dirname, "src/form/form.js"),
+    topbar: path.join(__dirname, "src/assets/javascripts/topbar.js"),
   },
   output: {
     path: path.join(__dirname, "dist"),
@@ -38,12 +39,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: path.join(__dirname, "./src/index.html"),
-      chunks: ["main"],
+      chunks: ["main", "topbar"],
     }),
     new HtmlWebpackPlugin({
       filename: "form.html",
       template: path.join(__dirname, "./src/form/form.html"),
-      chunks: ["form"],
+      chunks: ["form", "topbar"],
     }),
   ],
   stats: "minimal",
