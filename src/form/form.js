@@ -1,3 +1,4 @@
+import { async } from "regenerator-runtime";
 import "../assets/styles/styles.scss";
 import "./form.scss";
 
@@ -5,12 +6,25 @@ const form = document.querySelector("form");
 const errorElement = document.querySelector("#errors");
 let errors = [];
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(form);
   const article = Object.fromEntries(formData.entries());
   if (formIsValid(article)) {
-    const json = JSON.stringify(article);
+    try {
+      const json = JSON.stringify(article);
+      const response = await fetch("https://restapi.fr/api/article", {
+        method: "POST",
+        body: json,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const body = await response.json();
+      console.log(body);
+    } catch (e) {
+      console.error("e : ", error);
+    }
   }
 });
 
