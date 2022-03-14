@@ -33,6 +33,7 @@ module.exports = {
         {
           from: "./src/assets/images/*",
           to: "assets/images/[name][ext]",
+          noErrorOnMissing: true,
         },
       ],
     }),
