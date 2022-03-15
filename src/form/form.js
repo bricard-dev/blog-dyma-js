@@ -1,4 +1,3 @@
-import { async } from "regenerator-runtime";
 import "../assets/styles/styles.scss";
 import "./form.scss";
 
@@ -23,7 +22,7 @@ form.addEventListener("submit", async (event) => {
       const body = await response.json();
       console.log(body);
     } catch (e) {
-      console.error("e : ", error);
+      console.error("e : ", e);
     }
   }
 });
@@ -40,7 +39,6 @@ const formIsValid = (article) => {
   } else {
     errors = [];
   }
-
   if (errors.length) {
     let errorHTML = "";
     errors.forEach((e) => {
