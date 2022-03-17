@@ -13,7 +13,14 @@ const createArticles = (articles) => {
   alt="profile"
 />
 <h2>${article.title}</h2>
-<p class="article-author">${article.author} - ${article.category}</p>
+<p class="article-author">${article.author} - ${new Date(
+      article.createdAt
+    ).toLocaleDateString("fr-FR", {
+      weekday: "long",
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    })}</p>
 <p class="article-content">
   ${article.content}
 </p>
@@ -50,7 +57,11 @@ const createArticles = (articles) => {
 const fetchArticle = async () => {
   try {
     const response = await fetch("https://restapi.fr/api/article");
-    const articles = await response.json();
+    let articles = await response.json();
+    if (!Array.isArray(articles)) {
+      articles = Array(articles);
+    }
+    console.log(articles);
     createArticles(articles);
   } catch (e) {
     console.log("e : ", e);
