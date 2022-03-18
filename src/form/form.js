@@ -45,13 +45,24 @@ form.addEventListener("submit", async (event) => {
   if (formIsValid(article)) {
     try {
       const json = JSON.stringify(article);
-      const response = await fetch("https://restapi.fr/api/article", {
-        method: "POST",
-        body: json,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let response;
+      if (articleId) {
+        response = await fetch(`https://restapi.fr/api/article/${articleId}`, {
+          method: "PATCH",
+          body: json,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      } else {
+        response = await fetch("https://restapi.fr/api/article", {
+          method: "POST",
+          body: json,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+      }
       if (response.status < 299) {
         location.assign("/index.html");
       }
