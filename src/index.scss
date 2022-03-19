@@ -30,6 +30,15 @@
           }
         }
       }
+
+      .active {
+        color: var(--primary);
+        font-weight: 700;
+
+        strong {
+          color: var(--primary);
+        }
+      }
     }
   }
 
