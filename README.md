@@ -1,1 +1,1 @@
-# blog-dyma
+# blog-dyma-js
